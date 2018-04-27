@@ -23,7 +23,7 @@ public class Producer {
         //声明交换机
         channel.exchangeDeclare(EXCHANGE_NAME,"topic");
         String message = "匹配insert";
-        channel.basicPublish(EXCHANGE_NAME,"order.insert",false,false,null,message.getBytes());
+        channel.basicPublish(EXCHANGE_NAME,"order.update",false,false,null,message.getBytes());
 
         channel.close();
         connection.close();

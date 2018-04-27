@@ -56,6 +56,7 @@ public class RPCServer {
         斐波那契数列
      */
     private static int fib(int n) {
+        System.out.println(n);
         if (n == 0)
             return 0;
         if (n == 1)

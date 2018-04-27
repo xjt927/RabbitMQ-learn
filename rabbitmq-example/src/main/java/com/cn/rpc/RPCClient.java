@@ -49,6 +49,7 @@ public class RPCClient {
             }
         });
 
+        //close();
         return response.take();
     }
 

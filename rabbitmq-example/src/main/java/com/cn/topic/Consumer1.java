@@ -3,9 +3,10 @@ package com.cn.topic;/**
  */
 
 import com.cn.ConnectionUtil;
-import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
@@ -24,20 +25,22 @@ public class Consumer1 {
     public static void main(String[] args) throws IOException {
         Connection connection = ConnectionUtil.getConnection();
         Channel channel = connection.createChannel();
-        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
-
-        channel.exchangeBind(QUEUE_NAME,EXCHANGE_NAME,"order.#");
+        //channel.queueDeclare(QUEUE_NAME,false,false,false,null);
+        channel.exchangeDeclare(EXCHANGE_NAME,"topic");
+        //order.#
+        channel.queueBind(QUEUE_NAME,EXCHANGE_NAME,"order.*");
 
         channel.basicQos(1);
 
-        DefaultConsumer defaultConsumer = new DefaultConsumer(channel) {
+        Consumer consumer = new DefaultConsumer(channel) {
             @Override
-            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+            public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties, byte[] body)
+                throws IOException {
                 super.handleDelivery(consumerTag, envelope, properties, body);
-                System.out.println("接收消息：" + new String(body, "UTF-8"));
+                System.out.println(new String(body,"UTF-8"));
             }
         };
-        channel.basicConsume(QUEUE_NAME,true,defaultConsumer);
+        channel.basicConsume(QUEUE_NAME,true,consumer);
 
     }
 }
