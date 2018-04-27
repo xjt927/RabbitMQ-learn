@@ -1,5 +1,10 @@
 # rabbitmq-learn
 
+RabbitMQ的详细介绍与JAVA使用：[http://www.cnblogs.com/lfalex0831/p/8963247.html](http://)
+
+Fork前，麻烦star一下，谢谢！
+ps：很辛苦的 -_-""
+
 #### 项目介绍
 学习 **RabbitMQ** （5.0+版本上）
 
