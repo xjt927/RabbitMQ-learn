@@ -32,12 +32,14 @@ public class Producer {
          */
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
         String message = "Hello World!";
-        for (int i = 0; i < 20; i++) {
-            message = message + i;
+//        for (int i = 0; i < 20; i++) {
+        int i=0;
+        while(true) {
+            message = message + i++;
             channel.basicPublish("",QUEUE_NAME,null,message.getBytes());
             Thread.sleep(1000);
         }
-        System.out.println("生产者 send ："+message);
+//        System.out.println("生产者 send ："+message);
         //channel.close();
         //connection.close();
     }

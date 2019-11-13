@@ -21,8 +21,8 @@ public class Consumer1 {
 
     public static void main(String[] args) throws IOException {
         Connection connection = ConnectionUtil.getConnection();
-        Channel channel = connection.createChannel();
-        channel.basicQos(1);//能者多劳模式
+        final Channel channel = connection.createChannel();
+//        channel.basicQos(1);//能者多劳模式
         //声明队列
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
 

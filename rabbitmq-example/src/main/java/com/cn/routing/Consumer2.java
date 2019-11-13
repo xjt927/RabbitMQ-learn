@@ -27,7 +27,7 @@ public class Consumer2 {
         Channel channel = connection.createChannel();
 
         // 声明队列
-        //channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         channel.exchangeDeclare(EXCHANGE_NAME,"direct");
         /*
          * 绑定队列到交换机

@@ -20,9 +20,9 @@ public class Consumer {
 
     public static void main(String[] args) throws IOException {
         Connection connection = ConnectionUtil.getConnection();
-        Channel channel = connection.createChannel(1);
+        final Channel channel = connection.createChannel(1);
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
-        StringBuffer message = new StringBuffer();
+        final StringBuffer message = new StringBuffer();
         //自4.0+ 版本后无法再使用QueueingConsumer，而官方推荐使用DefaultConsumer
         com.rabbitmq.client.Consumer consumer = new DefaultConsumer(channel) {
             @Override

@@ -13,11 +13,12 @@ import java.util.concurrent.TimeoutException;
  **/
 public class ConnectionUtil {
 
-    private static final String RABBIT_HOST = "localhost";
+    private static final String RABBIT_HOST = "39.97.255.24";
+    private static final int RABBIT_PORT =  5672 ;
 
-    private static final String RABBIT_USERNAME = "guest";
+    private static final String RABBIT_USERNAME = "test";
 
-    private static final String RABBIT_PASSWORD = "guest";
+    private static final String RABBIT_PASSWORD = "123456";
 
     private static Connection connection = null;
 
@@ -25,6 +26,8 @@ public class ConnectionUtil {
         if(connection == null) {
             ConnectionFactory connectionFactory = new ConnectionFactory();
             connectionFactory.setHost(RABBIT_HOST);
+            connectionFactory.setPort(RABBIT_PORT);
+            connectionFactory.setVirtualHost("/");
             connectionFactory.setUsername(RABBIT_USERNAME);
             connectionFactory.setPassword(RABBIT_PASSWORD);
             try {

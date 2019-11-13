@@ -25,7 +25,7 @@ public class Consumer1 {
     public static void main(String[] args) throws IOException {
         Connection connection = ConnectionUtil.getConnection();
         Channel channel = connection.createChannel();
-        //channel.queueDeclare(QUEUE_NAME,false,false,false,null);
+        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
         channel.exchangeDeclare(EXCHANGE_NAME,"topic");
         //order.#
         channel.queueBind(QUEUE_NAME,EXCHANGE_NAME,"order.*");

@@ -21,8 +21,8 @@ public class Consumer2 {
 
     public static void main(String[] args) throws IOException {
         Connection connection = ConnectionUtil.getConnection();
-        Channel channel = connection.createChannel();
-        channel.basicQos(1);//能者多劳模式
+        final Channel channel = connection.createChannel();
+//        channel.basicQos(1);//能者多劳模式
         //声明队列
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
         //自4.0+ 版本后无法再使用QueueingConsumer，而官方推荐使用DefaultConsumer

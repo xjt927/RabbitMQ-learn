@@ -32,8 +32,11 @@ public class Producer {
         channel.exchangeDeclare(EXCHANGE_NAME,"fanout", true,true,null);
 
         String message = "订阅消息";
-        channel.basicPublish(EXCHANGE_NAME,"",null,message.getBytes());
-        System.out.println("生产者 send ："+message);
+        for (int i =0;i<50;i++) {
+            message+=i;
+            channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
+            System.out.println("生产者 send ：" + message);
+        }
         channel.close();
         connection.close();
     }

@@ -13,6 +13,6 @@ public class RPCTest {
 
     public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
         RPCClient rpcClient = new RPCClient();
-        System.out.println(rpcClient.call("2"));
+        System.out.println(rpcClient.call("5"));
     }
 }
